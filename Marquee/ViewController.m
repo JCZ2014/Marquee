@@ -15,6 +15,7 @@
     
     CGFloat marqueeAngleInt;
 }
+
 @property (nonatomic,strong) UIImageView *marqueeImageView;
 
 @end
@@ -23,13 +24,11 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
     marqueeAngleInt = 0;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
     [myTimer invalidate];
     myTimer = nil;
 }
@@ -38,15 +37,20 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    self.marqueeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(53, 37, [UIScreen mainScreen].bounds.size.width - 106, [UIScreen mainScreen].bounds.size.width - 106)];
+    [self initUI];
+}
+
+- (void)initUI {
+    self.marqueeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(50, ([UIScreen mainScreen].bounds.size.height - self.view.bounds.size.width - 100) / 2, self.view.bounds.size.width - 100, self.view.bounds.size.width - 100)];
     self.marqueeImageView.image = [UIImage imageNamed:@"icon_bg_turntable"];
     [self.view addSubview:self.marqueeImageView];
     
-    myTimer = [NSTimer scheduledTimerWithTimeInterval:0.6 target:self selector:@selector(lotteryViewBgAction) userInfo:nil repeats:YES];
+    myTimer = [NSTimer scheduledTimerWithTimeInterval:0.6 target:self selector:@selector(marqueeAction) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:myTimer forMode:NSDefaultRunLoopMode];
 }
 
-- (void)lotteryViewBgAction {
+#pragma mark - Other Action
+- (void)marqueeAction {
     CGAffineTransform transform= CGAffineTransformMakeRotation(marqueeAngleInt);
     self.marqueeImageView.transform = transform;
     marqueeAngleInt -= 45;

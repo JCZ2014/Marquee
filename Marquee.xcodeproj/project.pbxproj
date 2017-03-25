@@ -414,6 +414,7 @@
 				74D734F51E5ADF23002ECDD6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		74D734F61E5ADF23002ECDD6 /* Build configuration list for PBXNativeTarget "MarqueeTests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +423,7 @@
 				74D734F81E5ADF23002ECDD6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
